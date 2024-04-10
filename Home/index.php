@@ -6,7 +6,7 @@ $con = conecta();
 $sql = "SELECT * FROM productos WHERE status = 1 AND eliminado = 0 ORDER BY RAND() LIMIT 6";
 $res = $con->query($sql);
 
-$sql_promociones = "SELECT * FROM promociones WHERE status = 1 AND eliminado = 0 ORDER BY RAND() LIMIT 6";
+$sql_promociones = "SELECT * FROM promociones WHERE status = 1 AND eliminado = 0 ORDER BY RAND()";
 $res_promociones = $con->query($sql_promociones);
 
 ?>
