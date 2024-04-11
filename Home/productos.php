@@ -22,10 +22,10 @@ $res = $con->query($sql);
     <style>
         .card-img-top {
             width: 150px; /* Tamaño fijo para la imagen */
-            height: 100px;
+            height: 150px;
             
             margin: auto; /* Centrar la imagen */
-            flex: 1; /* Hacer que la imagen ocupe todo el espacio disponible */
+            /* flex: 1;  Hacer que la imagen ocupe todo el espacio disponible */
         }
     </style>
 
@@ -42,17 +42,18 @@ $res = $con->query($sql);
                 <div class="row">
 
                     <?php
-                    // Iterar sobre los resultados de la consulta
+                    
                     while ($row = $res->fetch_assoc()) {
                         ?>
                         <div class="col-4 mb-4">
                             <div class="card text-center">
                                 <!-- Imagen del producto -->
                                 <?php
-                                // Construir la ruta completa de la imagen
                                 $rutaImagen = "../Admin/Admin_Archivos/" . $row['archivo_n'];
                                 ?>
-                                <img src="<?php echo $rutaImagen; ?>" alt="Producto" class="card-img-top"><br>
+                                <a href="producto_detalle.php?id=<?php echo $row['id'] ?>">
+                                    <img src="<?php echo $rutaImagen; ?>" alt="Producto" class="detalle card-img-top"><br>
+                                </a>
                                 <!-- Nombre del producto -->
                                 <h5 class="card-title text-truncate"><?php echo $row['nombre']; ?></h5>
                                 <!-- Costo del producto -->

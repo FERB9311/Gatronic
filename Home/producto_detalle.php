@@ -73,7 +73,7 @@
 
         // Calcula $costo_maximo después de obtener los datos del producto actual
         $costo_maximo = $costo + 500;
-
+        
         $dir       = "../Admin/Admin_Archivos/";
         $file_path = $dir . $archivo_n;
 
