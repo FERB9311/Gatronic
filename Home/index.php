@@ -25,7 +25,7 @@ $res_promociones = $con->query($sql_promociones);
     <style>
         .card-img-top {
             width: 150px; 
-            height: 100px;
+            height: 150px;
             
             margin: auto; 
             flex: 1; 
@@ -33,7 +33,7 @@ $res_promociones = $con->query($sql_promociones);
 
         .promo{
             width: 80%;
-            height: 70%;
+            height: auto;
         }
     </style>
 </head>
@@ -53,7 +53,7 @@ $res_promociones = $con->query($sql_promociones);
 
                     $dir = "../Admin/Admin_Archivos/";
                     $file_path = $dir . $archivo;
-                    echo "<img src='$file_path' alt='Imagen de la promoción' style='width: 100%; height: auto;' class='promo'>";
+                    echo "<img src='$file_path' alt='Imagen de la promoción' class='promo'>";
                 ?>
             </div>
         </div>
@@ -76,7 +76,9 @@ $res_promociones = $con->query($sql_promociones);
                                 <?php
                                 $rutaImagen = "../Admin/Admin_Archivos/" . $row['archivo_n'];
                                 ?>
-                                <img src="<?php echo $rutaImagen; ?>" alt="Producto" class="card-img-top"><br>
+                                <a href="producto_detalle.php?id=<?php echo $row['id'] ?>">
+                                    <img src="<?php echo $rutaImagen; ?>" alt="Producto" class="card-img-top"><br>
+                                </a>
                                 <!-- Nombre del producto -->
                                 <h5 class="card-title text-truncate"><?php echo $row['nombre']; ?></h5>
                                 <!-- Costo del producto -->
