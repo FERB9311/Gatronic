@@ -36,7 +36,7 @@
 
         .card-img-top {
             width: 150px; /* Tamaño fijo para la imagen */
-            height: 100px;
+            height: 150px;
             
             margin: auto; /* Centrar la imagen */
             flex: 1; /* Hacer que la imagen ocupe todo el espacio disponible */
@@ -116,7 +116,9 @@
                                 <?php
                                 $rutaImagen = "../Admin/Admin_Archivos/" . $row['archivo_n'];
                                 ?>
-                                <img src="<?php echo $rutaImagen; ?>" alt="Producto" class="card-img-top"><br>
+                                <a href="producto_detalle.php?id=<?php echo $row['id'] ?>">
+                                    <img src="<?php echo $rutaImagen; ?>" alt="Producto" class="card-img-top"><br>
+                                </a>
                                 <!-- Nombre del producto -->
                                 <h5 class="card-title text-truncate"><?php echo $row['nombre']; ?></h5>
                                 <!-- Costo del producto -->
