@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php session_start(); ?>
 
+
 <html lang="es">
 
 <head>
@@ -16,6 +17,13 @@
 
     <!-- Waitme -->
     <link rel="stylesheet" href="Home_estilos/waitMe.min.css">
+
+    <!-- Js -->
+    <script src="Home_Funciones/Jquery_lib.js"></script>
+
+    <!-- Main -->
+    <script src="Home_Funciones/main.js"></script>
+    
 </head>
 
 <body>
@@ -24,56 +32,31 @@
     <!-- Contenido -->
     <div class="container-fluid py-5">
         <div class="d-flex justify-content-center align-items-center">
-            <div class="col-xl-4 bg-light">
+            <div class="bg-light">
                 <h1 class="text-center">Carrito</h1>
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th class="text-center">Cantidad</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    Producto 1
-                                    <small class="d-block text-muted">khjkhkjlkh</small>
-                                </td>
-                                <td class="align-middle text-center" width=40%>
-                                    <input type="number" class="form-control form-control-small" min="0" max="50" value="1">
-                                </td>
-                                <td class="align-middle text-center">$ 134</td>
-                                <td class="text-right align-middle"><i class="fas fa-times text-danger"></i></td>
-                            </tr>
-                        </tbody>
+                <div id="cart_wrapper">
+                    <button class="btn btn-sm btn-danger">Vaciar carrito</button>
+                    <br><br>
+                    <table class="table">
+                        <tr>
+                            <th class="border-0">Subtotal</th>
+                            <td class="text-success border-0" style="text-align:right;">$ 649</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td class="text-success" style="text-align:right;">
+                                <h3 class="font-weight-bold">$649</h3>
+                            </td>
+                        </tr>
                     </table>
-                </div>
-                <button class="btn btn-sm btn-danger">Vaciar carrito</button>
-                <br><br>
-                <table class="table">
-                    <tr>
-                        <th class="border-0">Subtotal</th>
-                        <td class="text-success border-0" style="text-align:right;">$ 649</td>
-                    </tr>
-                    <tr>
-                        <th>Total</th>
-                        <td class="text-success" style="text-align:right;">
-                            <h3 class="font-weight-bold">$649</h3>
-                        </td>
-                    </tr>
-                </table>
-                <!-- Fin de la tabla de los totales del carrito -->
-                
-                <button class="btn btn-info btn-lg btn-block">Pagar ahora</button>
-                
-
-
+                    <!-- Fin de la tabla de los totales del carrito -->
+                    
+                    <button class="btn btn-info btn-lg btn-block">Pagar ahora</button>
+                </div>               
             </div>
         </div>
     </div>
+
 
     <!-- Footer -->
     <div class="container-fluid bg-light py-5">
@@ -103,7 +86,6 @@
     </div>
 
     <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -114,6 +96,7 @@
 
     <!-- Waitme -->
     <script src="Home_estilos/waitMe.min.js"></script>
+    
 </body>
 
 </html>

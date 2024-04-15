@@ -3,6 +3,7 @@ session_start();
 require "Home_Funciones/conecta.php";
 $con = conecta();
 
+
 $sql = "SELECT * FROM productos WHERE status = 1 AND eliminado = 0";
 $res = $con->query($sql);
 ?>
@@ -18,6 +19,9 @@ $res = $con->query($sql);
     <link rel="stylesheet" href="Home_estilos/waitMe.min.css">
     <!-- Js -->
     <script src="Home_Funciones/Jquery_lib.js"></script>
+    <!-- Main -->
+    <script src="Home_Funciones/main.js"></script>
+
 
     <style>
         .card-img-top {
@@ -61,7 +65,7 @@ $res = $con->query($sql);
                                 <?php if (isset($_SESSION['nombreUserc'])) { ?>
                                     <div class="card-body p-2">
                                         <input type="number" class="form-control mb-2" placeholder="Cantidad" min="0" max="<?php echo$row['stock']; ?>" value="1">
-                                        <button class="btn btn-sm btn-success">
+                                        <button class="btn btn-sm btn-success do_add_to_cart" data-cantidad="1" data-id="<?php echo $row['id'];?>">
                                             <i class="fas fa-plus"></i> Agregar al carrito
                                         </button>
                                     </div>
@@ -105,7 +109,6 @@ $res = $con->query($sql);
     </div>
 
     <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
@@ -114,6 +117,7 @@ $res = $con->query($sql);
 
     <!-- Waitme -->
     <script src="Home_estilos/waitMe.min.js"></script>
+
 
 </body>
 </html>

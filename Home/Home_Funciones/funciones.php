@@ -3,6 +3,7 @@ session_start();
 require "conecta.php";
 $con = conecta();
 
+
 $id_producto = $_REQUEST['id_producto'];
 $cantidad    = $_REQUEST['cantidad'];
 $id_cliente  = $_SESSION['idUserc'];   

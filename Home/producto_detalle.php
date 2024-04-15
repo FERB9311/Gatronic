@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <!-- Waitme -->
     <link rel="stylesheet" href="Home_estilos/waitMe.min.css">
+    <!-- Js -->
+    <script src="Home_Funciones/Jquery_lib.js"></script>
+    <!-- Main -->
+    <script src="Home_Funciones/main.js"></script>
 
     <style>
         body {
@@ -92,7 +96,7 @@
         if (isset($_SESSION['nombreUserc'])) { ?>
             <div class="card-body p-2">
                 <input type="number" class="form-control-small mb-2" placeholder="Cantidad" min="0" max="<?php echo $row['stock']; ?>" value="1">
-                <br><button class="btn btn-sm btn-success">
+                <br><button class="btn btn-sm btn-success do_add_to_cart" data-cantidad="1" data-id="<?php echo $row['id'];?>">
                     <i class="fas fa-plus"></i> Agregar al carrito
                 </button>
             </div>
@@ -126,7 +130,7 @@
                                 <?php if (isset($_SESSION['nombreUserc'])) { ?>
                                     <div class="card-body p-2">
                                         <input type="number" class="form-control mb-2" placeholder="Cantidad" min="0" max="<?php echo $row['stock']; ?>" value="1">
-                                        <button class="btn btn-sm btn-success">
+                                        <button class="btn btn-sm btn-success do_add_to_cart" data-cantidad="1" data-id="<?php echo $row['id'];?>">
                                             <i class="fas fa-plus"></i> Agregar al carrito
                                         </button>
                                     </div>
@@ -169,7 +173,6 @@
     </div>
 
     <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
