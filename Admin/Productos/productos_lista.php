@@ -156,7 +156,7 @@ $(document).ready(function () {
             });
             $(".pedidos").click(function(event){
                 event.preventDefault();
-                window.location.href = "../Pedidos/";
+                window.location.href = "../Pedidos/pedidos_lista.php";
             });
             $(".cerrar").click(function(event){
                 event.preventDefault();

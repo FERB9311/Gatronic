@@ -1,4 +1,5 @@
 <?php
+if (isset($_SESSION['nombreUserc'])) { 
 
     define('IMAGES'  , 'Home_Archivos/');
     require_once 'functions.php';
@@ -241,4 +242,5 @@
          break;
     
     }
+}
 ?>

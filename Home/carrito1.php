@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php session_start(); ?>
 
+echo '<script>load_cart();</script>';
 
 <html lang="es">
 
@@ -35,11 +36,7 @@
             <div class="bg-light">
                 <h1 class="text-center">Carrito</h1>
                 <div id="cart_wrapper">
-                    <button class="btn btn-sm btn-danger ">Vaciar carrito</button>
-                    <br><br>
-                    <!-- Fin de la tabla de los totales del carrito -->
                     
-                    <button class="btn btn-info btn-lg btn-block">Pagar ahora</button>
                 </div>               
             </div>
         </div>

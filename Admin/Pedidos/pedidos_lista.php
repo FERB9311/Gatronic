@@ -8,7 +8,7 @@
 ?>
 <html>
 <head>    
-    <title>Lista de empleados</title>
+    <title>Lista de pedidos</title>
     
     <link rel="stylesheet" type="text/css" href="../Admin_Estilos/estilo2.css">
 
@@ -33,15 +33,7 @@
                 
             </tr>
         </table><br><br>
-<div class="escritura">Lista de empleados<br><hr></div><br>
-
-<br><div>
-    <a href="#" style="--clr:#1e9bff">
-        <span id="nuevo">Dar de alta</span><l></l>
-    </a>
-</div><br>
-
-
+<div class="escritura">Lista de pedidos<br><hr></div><br>
 
 <br><table border=2 align="center" valign="middle" id="tabla-empleados">
     <tr>
@@ -49,11 +41,9 @@
     </tr>
     <tr>
         <th scope="col">ID</th>
-        <th scope="col">Nombre Completo</th>
-        <th scope="col">Correo</th>
-        <th scope="col">Rol</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Fecha</th>
+        <th scope="col">id_cliente</th>
+        <th scope="col">status</th>
         <th scope="col"></th>
     </tr>
 
@@ -63,32 +53,28 @@
 require "../Admin_Funciones/conecta.php";
 $con = conecta();
 
-$sql = "SELECT * FROM empleados WHERE status = 1 AND eliminado = 0";
+$sql = "SELECT * FROM pedidos WHERE status = 1";
 
 $res = $con->query($sql);
 
-$roles = array( 1=> "Gerente", 2=> "Ejecutivo");
+$estado = array( 0=> "Abierto", 1=> "Cerrado");
 
 while($row = $res->fetch_array()){
     $id        = $row["id"];
-    $nombre    = $row["nombre"];
-    $apellidos = $row["apellidos"];
-    $correo    = $row["correo"];
-    $rolNum       = $row["rol"];
+    $fecha    = $row["fecha"];
+    $id_cliente = $row["id_cliente"];
+    $est       = $row["status"];
 
-    $rol = $roles[$rolNum];
+    $sit = $estado[$est];
 
 ?>
     <tr class="fila">
         <td height="10%" width="10%" align="center" valign="middle"><?php echo $id; ?></td>
-        <td height="40%" width="40%" align="center" valign="middle"><?php echo $nombre . " " . $apellidos; ?></td>
-        <td height="40%" width="40%" align="center" valign="middle"><?php echo $correo; ?></td>
-        <td height="50%" width="50%" align="center" valign="middle"><?php echo $rol; ?></td>
-        <td align="center" valign="middle">
-            <ul><li class="elimina" id="eliminar" data-id="<?php echo $id; ?>">Eliminar</li></ul> 
-        </td>
+        <td height="40%" width="40%" align="center" valign="middle"><?php echo $fecha; ?></td>
+        <td height="40%" width="40%" align="center" valign="middle"><?php echo $id_cliente; ?></td>
+        <td height="50%" width="50%" align="center" valign="middle"><?php echo $sit; ?></td>
+        
         <td><ul><li class="elimina detalle" data-id="<?php echo $id; ?>">Ver Detalle</li></ul></td>
-        <td><ul><li class="elimina editar" data-id="<?php echo $id; ?>">Editar</li></ul></td>  
     </tr>
 
 <?php
@@ -98,45 +84,12 @@ while($row = $res->fetch_array()){
 
 <script>
    $(document).ready(function () {
-    $("#nuevo").click(function (event) {
-            event.preventDefault();
-            window.location.href = "empleados_alta.php";
-        });
     $(".detalle").click(function(){
         var id = $(this).data("id");
-        window.location.href = "empleados_detalle.php?id=" + id;
+        window.location.href = "pedidos_detalle.php?id=" + id;
     });
-    $(".editar").click(function(){
-        var id = $(this).data("id");
-        window.location.href = "empleados_editar.php?id=" + id;
+   
     });
-
-    $("#eliminar").click(function () {
-        var $elemento = $(this);
-        var id = $(this).data("id");
-        var confirmar = confirm("¿Eliminar empleado?");
-
-        if (confirmar) {
-            $.ajax({
-                url: "empleados_elimina.php",
-                method: "POST",
-                data: { id: id },
-                dataType: 'json',
-                success: function (res) {
-                    if (res.success) {
-                        console.log(res);
-                        $elemento.closest("tr").remove();
-                    } else {
-                        alert("Error al eliminar.");
-                    }
-                },
-                error: function () {
-                    alert("Error al eliminar.");
-                }
-            });
-        }
-    });
-});
 
             $(document).ready(function () {
                 $(".inicio").click(function (event) {
