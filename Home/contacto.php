@@ -15,7 +15,21 @@
          
         <!-- Contenido -->
         <div class="container">
-
+            <div id="contacto">
+                <ul>
+                    <li class="google-maps"><!-- maps --></li>
+                    <li class="formulario">
+                        <h3>Déjanos un mensaje</h3>
+                        <form action="procesos/submit.php" method="POST">
+                            <input type="name" name="nombre" placeholder="Tu nombre">
+                            <input type="email" name="email" placeholder="Tu e-mail">
+                            <input type="tel" name="tel" placeholder="Tu teléfono">
+                            <textarea name="mensaje" placeholder="Tu mensaje..."></textarea>
+                            <button type="submit" name="submit" class="black">Enviar mensaje</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- Footer -->

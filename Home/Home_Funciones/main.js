@@ -73,6 +73,39 @@ $(document).ready(function(){
         });
     });
 
+    // Actualizar carro con input
+    $('body').on('blur', '.do_update_cart', function(event) {
+        var cantidad = $(this).val();
+        var id = $(this).data('id');
+        var action = 'put';
+
+
+        $.ajax({
+        url: 'Home_Funciones/ajax.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data:
+        {
+            action,
+            id,
+            cantidad
+        }
+        }).done(function(res) {
+        if(res.status === 200) {
+            swal('¡Bien hecho!', 'Producto actualizado con éxito', 'success');
+            load_cart();
+            return;
+        }
+        else {
+            swal('Upps!', res.msg, 'error');
+            return;
+        }
+        }).fail(function(err) {
+        swal('Upps!', 'Ocurrió un error', 'error');
+        }).always(function() {
+        });
+    });
+
     // Eliminar un producto del carrito
     $('body').on('click', '.do_delete_from_cart', delete_from_cart);
 
@@ -142,6 +175,62 @@ $(document).ready(function(){
 
             });
         }
+
+    // Realizar el pago
+    $('body').on('submit','#do_pay',do_pay);
+    function do_pay(event) {
+        event.preventDefault();
+        var action = 'pay';
+
+        $.ajax({
+        url: 'Home_Funciones/ajax.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            action,
+            
+        },
+        beforeSend: function() {
+        }
+        }).done(function (res) {
+        if (res.status === 200) {
+            $('body').waitMe();
+            setTimeout(() => {
+            $('body').waitMe('hide');
+            load_cart();
+            load_order_resume();
+            }, 4500);
+            return;
+        } else {
+            swal('Upps!', res.msg, 'error');
+            return;
+        }
+        }).fail(function (err) {
+        swal('Upps!', 'Hubo un error, intenta de nuevo', 'error');
+        }).always(function () {
+        });
+    }
     
+    // Resumen de compra
+    function load_order_resume() {
+        var action = 'order_resume';
+        $.ajax({
+        url: 'Home_Funciones/ajax.php',
+        type: 'POST',
+        dataType: 'json',
+        data:
+        {
+            action
+        }
+        }).done(function(res){
+        if(res.status === 200) {
+            $('body').append(res.data);
+            $('#order_resume').modal('show');
+            load_cart();
+        }
+        }).fail(function(err){
+
+        });
+    }
 
 });
