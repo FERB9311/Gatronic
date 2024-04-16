@@ -64,8 +64,8 @@ $res = $con->query($sql);
                                 <h6>$ <?php echo $row['costo']; ?></h6>
                                 <?php if (isset($_SESSION['nombreUserc'])) { ?>
                                     <div class="card-body p-2">
-                                        <input type="number" class="form-control mb-2" placeholder="Cantidad" min="0" max="<?php echo$row['stock']; ?>" value="1">
-                                        <button class="btn btn-sm btn-success do_add_to_cart" data-cantidad="1" data-id="<?php echo $row['id'];?>">
+                                        <input type="number" class="form-control mb-2"  placeholder="Cantidad" min="1" max="<?php echo$row['stock']; ?>" value="1">
+                                        <button class="btn btn-sm btn-success do_add_to_cart" data-id="<?php echo $row['id'];?>">
                                             <i class="fas fa-plus"></i> Agregar al carrito
                                         </button>
                                     </div>

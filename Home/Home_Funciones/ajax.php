@@ -45,7 +45,11 @@
                             <input type="number" class="form-control form-control-small" min="0" max="50" value="' . $product['cantidad'] . '">
                         </td>
                         <td class="align-middle text-right">'.format_currency(floatval($product['cantidad'] * $product['costo'])).'</td>
-                        <td class="text-right align-middle"><i class="fas fa-times text-danger"></i></td>
+                        <td class="text-right align-middle">
+                            <button class="btn btn-sm btn-danger do_delete_from_cart" data-id="'.$product['id'].'">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </td>
                     </tr>';
                 }
             
@@ -53,7 +57,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-sm btn-danger">Vaciar carrito</button>';
+                <button class="btn btn-sm btn-danger do_destroy_cart">Vaciar carrito</button>';
             } else {
                 // No hay productos en el carrito
                 $output .= '
@@ -95,6 +99,26 @@
             }
 
             json_output(201);
+            break;
+
+        case 'destroy':
+            if(!destroy_cart($id_cliente, $con)){
+                json_output(400, 'No se pudo destruir el carrito, intenta de nuevo');
+            }
+            json_output(200);
+            break;
+
+        case 'delete':
+            if(!isset($_POST['id'])){
+                json_output(403);
+            }
+
+            if(!delete_from_cart($id_cliente, $con, $_POST['id'])){
+                json_output(400, 'No se pudo borrar el producto del carrito, intenta de nuevo');
+            }
+
+            json_output(200);
+
             break;
         
         default:

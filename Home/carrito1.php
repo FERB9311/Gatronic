@@ -30,25 +30,13 @@
     <?php include "Home_Funciones/header.php" ?>
 
     <!-- Contenido -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5" id="load_wrapper">
         <div class="d-flex justify-content-center align-items-center">
             <div class="bg-light">
                 <h1 class="text-center">Carrito</h1>
                 <div id="cart_wrapper">
-                    <button class="btn btn-sm btn-danger">Vaciar carrito</button>
+                    <button class="btn btn-sm btn-danger ">Vaciar carrito</button>
                     <br><br>
-                    <table class="table">
-                        <tr>
-                            <th class="border-0">Subtotal</th>
-                            <td class="text-success border-0" style="text-align:right;">$ 649</td>
-                        </tr>
-                        <tr>
-                            <th>Total</th>
-                            <td class="text-success" style="text-align:right;">
-                                <h3 class="font-weight-bold">$649</h3>
-                            </td>
-                        </tr>
-                    </table>
                     <!-- Fin de la tabla de los totales del carrito -->
                     
                     <button class="btn btn-info btn-lg btn-block">Pagar ahora</button>

@@ -30,9 +30,10 @@
             // Recorrer los resultados y almacenarlos en el array
             while ($row = $res->fetch_assoc()) {
                 $producto = [
-                    'nombre' => $row['nombre'],
-                    'codigo' => $row['codigo'],
-                    'costo' => $row['costo'],
+                    'id'       => $row['id_producto'],
+                    'nombre'   => $row['nombre'],
+                    'codigo'   => $row['codigo'],
+                    'costo'    => $row['costo'],
                     'cantidad' => $row['cantidad']
                 ];
                 $carrito['products'][] = $producto;
@@ -73,6 +74,12 @@
         // Verificar si el producto ya está en el carrito
         $sql_check = "SELECT * FROM pedidos_productos WHERE id_pedido = $id_pedido AND id_producto = $id_producto";
         $res_check = $con->query($sql_check);
+
+        // Obtener precio
+        $sql = "SELECT * FROM productos WHERE id = $id_producto";
+        $res = $con->query($sql);
+        $row = $res->fetch_assoc();
+        $precio = $row['costo'];
     
         if ($res_check->num_rows > 0) {
             // El producto ya está en el carrito, actualizar la cantidad
@@ -85,9 +92,46 @@
             return true; // Indica que se actualizó correctamente
         } else {
             // El producto no está en el carrito, insertarlo
-            $sql_insert = "INSERT INTO pedidos_productos (id_pedido, id_producto, cantidad) VALUES ($id_pedido, $id_producto, $cantidad)";
+            $sql_insert = "INSERT INTO pedidos_productos (id_pedido, id_producto, cantidad, precio) VALUES ($id_pedido, $id_producto, $cantidad, $precio)";
             $con->query($sql_insert);
             return true; // Indica que se insertó correctamente
+        }
+    }
+
+    function delete_from_cart($id_cliente, $con, $id_producto) {
+        // Eliminar el producto del carrito
+        $sql_delete = "DELETE FROM pedidos_productos WHERE id_pedido IN (SELECT id FROM pedidos WHERE id_cliente = $id_cliente AND status = 0) AND id_producto = $id_producto";
+        $con->query($sql_delete);
+    
+        // Verificar si se eliminó correctamente
+        $sql_check = "SELECT * FROM pedidos_productos WHERE id_pedido IN (SELECT id FROM pedidos WHERE id_cliente = $id_cliente AND status = 0) AND id_producto = $id_producto";
+        $res_check = $con->query($sql_check);
+    
+        if ($res_check->num_rows > 0) {
+            return false; // No se eliminó correctamente
+        } else {
+            return true; // Se eliminó correctamente
+        }
+    }
+    
+    
+    
+    function destroy_cart($id_cliente, $con) {
+        // Obtener el ID del pedido abierto del cliente
+        $sql_pedido = "SELECT id FROM pedidos WHERE id_cliente = $id_cliente AND status = 0";
+        $res_pedido = $con->query($sql_pedido);
+    
+        if ($res_pedido->num_rows > 0) {
+            $row_pedido = $res_pedido->fetch_assoc();
+            $id_pedido = $row_pedido['id'];
+    
+            // Eliminar todos los productos del carrito (pedidos_productos) asociados al ID del pedido
+            $sql_delete = "DELETE FROM pedidos_productos WHERE id_pedido = $id_pedido";
+            $con->query($sql_delete);
+    
+            return true; // Indica que el carrito se vació correctamente
+        } else {
+            return false; // Indica que no se encontró un pedido abierto para el cliente
         }
     }
     
