@@ -142,7 +142,7 @@
 <form name="Forma1" enctype="multipart/form-data" id="Forma1">
     <input type="text" name="nombre" id="nombre" placeholder="Nombre"/><br/>
     <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos"/><br/>
-    <input onfocus="entra();" onblur="sale();" type="text" name="correo" id="correo" placeholder="Correo"/><br/>
+    <input onblur="sale();" type="text" name="correo" id="correo" placeholder="Correo"/><br/>
     <input type="text" name="pass" id="pass" placeholder="Password"/><br/>
     <select name="rol" id="rol">
         <option value="0">Selecciona...</option>

@@ -79,8 +79,8 @@
                 <div class="formulario">
                     <h3>Déjanos un mensaje</h3>
                     <form action="Home_Funciones/submit.php" method="POST">
-                        <input type="text" name="nombre" placeholder="Tu nombre" required>
-                        <input type="email" name="email" placeholder="Tu e-mail" required>
+                        <input type="text" name="nombre" placeholder="Tu nombre" value="<?php echo isset($_SESSION['nombreUserc']) ? $_SESSION['nombreUserc'] : ''; ?>" required>
+                        <input type="email" name="email" placeholder="Tu e-mail" value="<?php echo isset($_SESSION['correoUserc']) ? $_SESSION['correoUserc'] : ''; ?>" required>
                         <input type="tel" name="tel" placeholder="Tu teléfono">
                         <textarea name="mensaje" placeholder="Tu mensaje..." required></textarea>
                         <button type="submit" name="submit">Enviar mensaje</button>

@@ -1,39 +1,39 @@
-if (isset($_SESSION['nombreUserc'])) { 
-    $(document).ready(function(){
-        //Cargar el carro
-        function load_cart(){
-            var load_wrapper = $('#load_wrapper'),
-            wrapper = $('#cart_wrapper'),
-            action = 'get';
+ //Cargar el carro
+function load_cart(){
+    var load_wrapper = $('#load_wrapper'),
+    wrapper = $('#cart_wrapper'),
+    action = 'get';
 
-            //Petición ajax
-            $.ajax({
-                url:'Home_Funciones/ajax.php',
-                type: 'POST',
-                dataType: 'JSON',
-                data:{
-                    action
-                },
-                beforeSend: function(){
-                    load_wrapper.waitMe();
-                }
-            }).done(function(res){
-                if(res.status === 200){
-                    setTimeout(() => {
-                        wrapper.html(res.data);
-                        load_wrapper.waitMe('hide');
-                    }, 2000);
-                }
-            }).fail(function(err){
-                swal('Upps!','Ocurrió un error','error'); // Mostrar el error en la ventana desde la que se agrega el producto
-                wrapper.html('¡Intenta de nuevo, por favor!');
-                return true;
-            }).always(function(){
-            
-            });
-        };
+    //Petición ajax
+    $.ajax({
+        url:'Home_Funciones/ajax.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data:{
+            action
+        },
+        beforeSend: function(){
+            load_wrapper.waitMe();
+        }
+    }).done(function(res){
+        if(res.status === 200){
+            setTimeout(() => {
+                wrapper.html(res.data);
+                load_wrapper.waitMe('hide');
+            }, 2000);
+        }
+    }).fail(function(err){
+        swal('Upps!','Ocurrió un error','error'); // Mostrar el error en la ventana desde la que se agrega el producto
+        wrapper.html('¡Intenta de nuevo, por favor!');
+        return true;
+    }).always(function(){
+    
+    });
+};
 
-
+ 
+ $(document).ready(function(){
+        
         // Evento click para agregar al carrito
         $('.do_add_to_cart').on('click', function(event){
             //Prevenir una acción
@@ -233,4 +233,4 @@ if (isset($_SESSION['nombreUserc'])) {
         }
 
     });
-}
+

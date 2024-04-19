@@ -1,5 +1,4 @@
 <?php
-if (isset($_SESSION['nombreUserc'])) { 
 
     define('IMAGES'  , 'Home_Archivos/');
     require_once 'functions.php';
@@ -196,8 +195,8 @@ if (isset($_SESSION['nombreUserc'])) {
                         $output .= 
                         '<tr>
                             <td class="align-middle" width="25%">
-                            <span class="d-block text-truncate">'.$p['nombre'].'</span>
-                            <small class="d-block text-muted">SKU '.$p['codigo'].'</small>
+                            <span class="d-block text-truncate" style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">'.$p['nombre'].'</span>
+                            <small class="d-block text-muted">Código '.$p['codigo'].'</small>
                             </td>
                             <td class="align-middle text-center" width="5%">'.$p['cantidad'].'</td>
                             <td class="align-middle text-right">'.format_currency(floatval($p['cantidad'] * $p['costo'])).'</td>
@@ -242,5 +241,4 @@ if (isset($_SESSION['nombreUserc'])) {
          break;
     
     }
-}
 ?>

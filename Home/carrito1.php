@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <?php session_start(); ?>
 
-echo '<script>load_cart();</script>';
-
 <html lang="es">
 
 <head>
@@ -29,6 +27,11 @@ echo '<script>load_cart();</script>';
 
 <body>
     <?php include "Home_Funciones/header.php" ?>
+    <script>
+        $(document).ready(function () {
+            load_cart();
+        });
+    </script>
 
     <!-- Contenido -->
     <div class="container-fluid py-5" id="load_wrapper">

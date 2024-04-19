@@ -43,7 +43,7 @@
             height: 150px;
             
             margin: auto; /* Centrar la imagen */
-            flex: 1; /* Hacer que la imagen ocupe todo el espacio disponible */
+            flex: 1; 
         }
     </style>
 </head>
@@ -77,12 +77,13 @@
 
         // Calcula $costo_maximo después de obtener los datos del producto actual
         $costo_maximo = $costo + 500;
+        $costo_minimo = $costo - 1500;
         
         $dir       = "../Admin/Admin_Archivos/";
         $file_path = $dir . $archivo_n;
 
         // Consulta para obtener productos similares
-        $sql_productos = "SELECT * FROM productos WHERE status = 1 AND eliminado = 0 AND costo BETWEEN '0' AND '$costo_maximo' AND id != $id ORDER BY RAND() LIMIT 3";
+        $sql_productos = "SELECT * FROM productos WHERE status = 1 AND eliminado = 0 AND costo BETWEEN '$costo_minimo' AND '$costo_maximo' AND id != $id ORDER BY RAND() LIMIT 3";
         $res_productos = $con->query($sql_productos);
 
         echo "<img src='$file_path' alt='Imagen del producto'>";
