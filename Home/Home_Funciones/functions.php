@@ -169,22 +169,23 @@
     }
 
     function get_order_resume($id_cliente, $con) {
-        // Actualizar el estado del pedido a 1 (completado)
-        $sql_update_pedido = "UPDATE pedidos SET status = 1 WHERE id_cliente = $id_cliente AND status = 0";
-        $con->query($sql_update_pedido);
     
         // Obtener los detalles de los productos relacionados con el cliente logueado
         $sql_select_productos = "SELECT pp.id_producto, p.nombre, p.codigo, p.costo, pp.cantidad
             FROM pedidos_productos pp
             INNER JOIN productos p ON pp.id_producto = p.id
             INNER JOIN pedidos ped ON pp.id_pedido = ped.id
-            WHERE ped.id_cliente = $id_cliente AND ped.status = 1"; 
+            WHERE ped.id_cliente = $id_cliente AND ped.status = 0"; 
         $res = $con->query($sql_select_productos);
     
         // Verificar si se ejecutó correctamente la consulta
         if (!$res) {
             return false;
         }
+
+        // Actualizar el estado del pedido a 1 (completado)
+        $sql_update_pedido = "UPDATE pedidos SET status = 1 WHERE id_cliente = $id_cliente AND status = 0";
+        $con->query($sql_update_pedido);
     
         // Array para almacenar los detalles de los productos
         $order_resume = ['products' => []];
